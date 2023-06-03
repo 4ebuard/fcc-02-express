@@ -10,7 +10,8 @@ let cssPath = __dirname + '/public'
 //
 //app.use(pathMiddleware)
 
-app.use(express.static(cssPath))
+//app.use('/public', express.static(cssPath))
+app.use('/public', express.static(cssPath))
 
 app.get('/', (req, res) => {
     res.sendFile(htmlPath + '/index.html')
