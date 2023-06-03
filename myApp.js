@@ -1,24 +1,26 @@
+let dotenv = require('dotenv').config()
 let express = require('express');
 let app = express();
 let htmlPath = __dirname + '/views'
 let cssPath = __dirname + '/public'
 
-//const pathMiddleware = (req, res, next) => {
-//    express.static(absoluteCssPath);
-  //  next();
-//}
-//
-//app.use(pathMiddleware)
-
-//app.use('/public', express.static(cssPath))
 app.use('/public', express.static(cssPath))
 
 app.get('/', (req, res) => {
     res.sendFile(htmlPath + '/index.html')
 })
 
-app.get('/json', (req, res) => {
-    res.json({"message": "Hello json"})
+
+
+app.get('/json', function (req, res)  {
+    let mesage = 'Hello json'
+    let upperCase = process.env.MESSAGE_STYLE
+    if (upperCase === "uppercase") {
+        res.json({"message": mesage.toUpperCase()})
+    } else {
+        res.json({"message": mesage})
+    //res.send(process.env.MESSAGE_STYLE)
+    }
 })
 
 console.log('Hello World');
