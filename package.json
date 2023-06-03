@@ -12,6 +12,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --inspect server.js"
+    "dev": "nodemon --inspect server.js",
+    "start": "node server.js"
   }
 }
