@@ -1,9 +1,19 @@
 let express = require('express');
 let app = express();
-let absolutePath = __dirname + '/views/index.html'
+let htmlPath = __dirname + '/views'
+let cssPath = __dirname + '/public'
+
+//const pathMiddleware = (req, res, next) => {
+//    express.static(absoluteCssPath);
+  //  next();
+//}
+//
+//app.use(pathMiddleware)
+
+app.use(express.static(cssPath))
 
 app.get('/', (req, res) => {
-    res.sendFile(absolutePath)
+    res.sendFile(htmlPath + '/index.html')
 })
 
 console.log('Hello World');
