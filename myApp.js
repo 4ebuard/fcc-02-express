@@ -36,6 +36,17 @@ app.get('/users', function (req, res)  {
     }
 })
 
+const words = ['hello', 'world']
+
+app.get('/words', function (req, res) {
+
+
+    res.send(words.join(' '))
+      
+    })
+        
+
+
 console.log('Hello World');
 
 
