@@ -23,6 +23,19 @@ app.get('/json', function (req, res)  {
     }
 })
 
+app.get('/users', function (req, res)  {
+    let ownerMessage = 'Hello boss'
+    let questMessage = 'Hello quest'
+    let owner = process.env.OWNER
+    let name = req.query.user
+    if (name === owner) {
+        res.json(ownerMessage)
+    } else {
+        res.json(questMessage)
+    //res.send(process.env.MESSAGE_STYLE)
+    }
+})
+
 console.log('Hello World');
 
 
