@@ -4,13 +4,17 @@ let app = express();
 let htmlPath = __dirname + '/views'
 let cssPath = __dirname + '/public'
 
-app.use('/public', express.static(cssPath))
+const functionMiddleware = (req, res, next) => {
+    console.log(req.method + " " + req.path + " - " + req.ip);
+    next();
+}
+
+  app.use(functionMiddleware)
+  app.use('/public', express.static(cssPath))
 
 app.get('/', (req, res) => {
     res.sendFile(htmlPath + '/index.html')
 })
-
-
 
 app.get('/json', function (req, res)  {
     let mesage = 'Hello json'
@@ -40,13 +44,10 @@ const words = ['hello', 'world']
 
 app.get('/words', function (req, res) {
 
-
     res.send(words.join(' '))
       
     })
         
-
-
 console.log('Hello World');
 
 
