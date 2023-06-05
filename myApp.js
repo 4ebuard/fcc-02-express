@@ -71,6 +71,13 @@ app.get('/words', function (req, res) {
     res.send(words.join(' '))
       
     })
+
+app.get('/name', (req, res) => {
+    let firstname = req.query.first
+    let lastname = req.query.last
+    res.json({ name: firstname + ' ' + lastname})
+    
+})    
         
 console.log('Hello World');
 
