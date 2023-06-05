@@ -9,7 +9,13 @@ const functionMiddleware = (req, res, next) => {
     next();
 }
 
+/*const getTime = (req, res, next) => {
+        req.user = getTheUserSync();  // Hypothetical synchronous operation
+        next();
+      };*/
+
   app.use(functionMiddleware)
+  //app.use('/now', getTime)
   app.use('/public', express.static(cssPath))
 
 app.get('/', (req, res) => {
@@ -38,6 +44,19 @@ app.get('/users', function (req, res)  {
         res.json(questMessage)
     //res.send(process.env.MESSAGE_STYLE)
     }
+})
+
+function getTime() {
+    return new Date().toString();
+}
+
+app.get('/now', function(req, res, next) {
+    req.time = getTime();
+    next();
+}, 
+
+function(req, res) {
+    res.json({time: req.time})
 })
 
 const words = ['hello', 'world']
