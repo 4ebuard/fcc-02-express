@@ -50,6 +50,11 @@ function getTime() {
     return new Date().toString();
 }
 
+app.get ('/:word/echo', (req, res) => {
+    let word = req.params.word
+    res.json({echo: word})
+})
+
 app.get('/now', function(req, res, next) {
     req.time = getTime();
     next();
